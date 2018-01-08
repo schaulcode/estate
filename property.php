@@ -33,6 +33,7 @@
             <div class="panel text-center">
               <img src="Image/<?php echo $image;?>" alt="" class="img-responsive">
               <h2><?php echo $title;?></h2>
+              <h4>Advertised by: <?php echo $advertiser ?></h4>
               <p>Location: <?php echo $location;?></p>
               <p><?php echo $content;?></p>
               <?php if(isset($sales_price)): ?>
