@@ -1,0 +1,214 @@
+@font-face {
+font-family: 'Franklin Gothic Book';
+font-style: normal;
+font-weight: normal;
+src: local('Franklin Gothic Book'), url('fonts/FRABK.woff') format('woff');
+}
+@font-face {
+  font-family: 'Myriam Fixed';
+  src: url('fonts/Miriam Fixed.ttf') format('ttf');
+}
+
+
+body{
+  background-image: url('../image/background.png');
+}
+
+@media (max-width:768px){
+  #social-media span{
+    display: block;
+    text-align: center;
+  }
+}
+@media (min-width:768px) {
+  #price-from, #price-to{
+    width: 45.5%;
+  }
+  #items .col-sm-6 {
+    width: 46%;
+    height: 442px;
+  }
+}
+@media (min-width:992px) {
+  .container{
+    width: 960px;
+  }
+  #items .col-md-4 {
+    width: 30.2%;
+    height: 444px;
+  }
+}
+@media (max-width:530px) {
+  footer{
+    font-size: 10px;
+  }
+}
+
+header{
+  background-color: #f0f0f0;
+}
+
+nav{
+  background-color: #e0e0e1;
+  border-bottom: solid 2px #a23509;
+}
+
+h2, .sale{
+ color: #a23509;
+ font-family: "Frankiln Gothic Book";
+}
+
+#social-media{
+  padding-top: 53px;
+}
+#facebook, #tumbir, #linkedin{
+  color: #fff;
+}
+#facebook{
+  background-color: #535353;
+}
+#tumbir{
+  background-color: #a3a3a3;
+}
+#linkedin{
+  background-color: #646464;
+}
+
+
+.navbar-fixed{
+  position: fixed;
+  right:0;
+  left:0;
+  top: 0;
+  z-index: 100;
+}
+.navbar{
+  margin: 0;
+}
+nav .nav{
+  margin-right: -15px;
+}
+.nav>li.active>a{
+  background-color: #a23509;
+  color: #fff;
+}
+nav a{
+  color: #3b3c3c
+}
+.navbar-toggle>.icon-bar{
+  background-color: #3b3c3c;
+}
+
+#main-contest{
+  background-color: #fff;
+}
+#banner{
+  max-height: 585px;
+}
+#banner, section{
+margin-bottom: 30px;
+}
+
+.carousel-control{
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 50%;
+  bottom: auto;
+  width: auto;
+  opacity: 1;
+}
+.glyphicon-chevron-left,
+.glyphicon-chevron-right{
+  margin: 0 !important;
+  position: static !important;
+}
+
+#article-contex{
+  border: solid 1px #bbbbbb;
+  width:100%;
+  padding: 10px;
+  font-size: 18px;
+  line-height: 30px;
+  font-family: 'Myriam Fixed';
+}
+#article-contex img{
+  margin: auto;
+}
+
+aside{
+  background-color: #dbdbdb;
+}
+aside h2{
+  background-color: #a23509;
+  margin: 0px -15px 10px -15px;
+  padding: 10px 30px 10px 30px;
+  color: #fff;
+  font-size: 22pt;
+}
+button{
+  background-color: #535353;
+  color: #fff;
+}
+aside a{
+  text-decoration: underline;
+}
+
+#items [class*="col-"]{
+  border: solid #bbbbbb 1px;
+  padding: 10px 15px 20px 15px;
+  margin: 15px;
+  text-align: center;
+}
+#items [class*="col-"]::after{
+  content: '';
+  display: block;
+  width: 1px;
+  height: 34px;
+}
+.btn-color{
+  color: #fff;
+  background-color: #a23509;
+  bottom: 20px;
+
+}
+.button-position{
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+
+}
+.sale{
+  text-decoration: line-through;
+}
+.offer{
+  color: green;
+}
+.price{
+  font-weight: bold;
+}
+
+footer{
+  background-image: url('../image/footer-background.png');
+  background-position: center;
+  min-height: 150px;
+  padding-top: 20px;
+}
+dt{
+  margin-bottom: 10px;
+}
+#social-media-footer>#facebook{
+  background-color: #365695;
+}
+#social-media-footer>#tumbir{
+  background-color: #51bfec;
+}
+#social-media-footer>#linkedin{
+  background-color: #1e7baa;
+}
+#copyright{
+  background-color: #a23509;
+  height: 20px;
+  color: #fff;
+  font-size: 12px;
+}
