@@ -65,31 +65,33 @@
         </section>
         <!-- ITEMS SECTION -->
         <section class="items row">
+          <h3>Latest Properties to buy:</h3>
 
-          <?php
-            $query = "SELECT * FROM properties_buy ORDER BY prop_id DESC LIMIT 3";
-            $result = mysqli_query($connection,$query);
-            if(!$result){
-                echo "querry failed";
-            }
-            while($row = mysqli_fetch_assoc($result)){
+            <?php
+              $query = "SELECT * FROM properties_buy ORDER BY prop_id DESC LIMIT 3";
+              $result = mysqli_query($connection,$query);
+              if(!$result){
+                  echo "querry failed";
+              }
+              while($row = mysqli_fetch_assoc($result)){
 
-            ?>
+              ?>
 
-          <div class="col-sm-6 col-md-4">
-            <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
-            <h2><?php echo $row['prop_title'];?></h2>
-            <p>Location: <?php echo $row['prop_location'];?></p>
-            <p><?php echo substr($row['prop_content'],0,65);?></p>
-            <p class="price"><span>Price:</span><br>
-            WAS: <span class="sale">£<?php echo $row['prop_price'];?></span><br>
-            NOW: <span class="offer">£<?php echo $row['prop_sale_price'];?></span></p>
-            <div class="button-position"><button class="btn btn-color" type="button" name="button">More details</button></div>
-          </div>
-          <?php } ?>
+            <div class="col-sm-6 col-md-4">
+              <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
+              <h2><?php echo $row['prop_title'];?></h2>
+              <p>Location: <?php echo $row['prop_location'];?></p>
+              <p><?php echo substr($row['prop_content'],0,65);?></p>
+              <p class="price"><span>Price:</span><br>
+              WAS: <span class="sale">£<?php echo $row['prop_price'];?></span><br>
+              NOW: <span class="offer">£<?php echo $row['prop_sale_price'];?></span></p>
+              <div class="button-position"><button class="btn btn-color" type="button" name="button">More details</button></div>
+            </div>
+            <?php } ?>
 
         </section>
         <section class="row items">
+          <h3>Latest properies to rent:</h3>
           <?php
             $query = "SELECT * FROM properties_rent ORDER BY prop_id DESC LIMIT 3";
             $result = mysqli_query($connection,$query);
