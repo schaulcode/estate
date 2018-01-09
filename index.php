@@ -64,10 +64,10 @@
           </aside>
         </section>
         <!-- ITEMS SECTION -->
-        <section id="items" class="row">
+        <section class="items row">
 
           <?php
-            $query = "SELECT * FROM properties_buy";
+            $query = "SELECT * FROM properties_buy ORDER BY prop_id DESC LIMIT 3";
             $result = mysqli_query($connection,$query);
             if(!$result){
                 echo "querry failed";
@@ -88,8 +88,26 @@
           </div>
           <?php } ?>
 
+        </section>
+        <section class="row items">
+          <?php
+            $query = "SELECT * FROM properties_rent ORDER BY prop_id DESC LIMIT 3";
+            $result = mysqli_query($connection,$query);
+            if(!$result){
+                echo "querry failed";
+            }
+            while($row = mysqli_fetch_assoc($result)){
 
-
+            ?>
+          <div class="col-sm-6 col-md-4">
+            <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
+            <h2><a href="property.php?id=<?php echo $row['prop_id'] ?>&prop=rent"><?php echo $row['prop_title'];?></a></h2>
+            <p>Location: <?php echo $row['prop_location'];?></p>
+            <p><?php echo substr($row['prop_content'],0,65);?></p>
+            <p class="price">Price: <?php echo  $row['prop_price_monthly']; ?>/m</p>
+            <div><button class="btn btn-color" type="button" name="button">More details</button></div>
+          </div>
+        <?php } ?>
         </section>
       </div>
 
