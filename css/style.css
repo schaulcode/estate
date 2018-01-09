@@ -24,7 +24,7 @@ body{
   #price-from, #price-to{
     width: 45.5%;
   }
-  #items .col-sm-6 {
+  .items .col-sm-6 {
     width: 46%;
     height: 442px;
   }
@@ -33,7 +33,7 @@ body{
   .container{
     width: 960px;
   }
-  #items .col-md-4 {
+  .items .col-md-4 {
     width: 30.2%;
     height: 444px;
   }
@@ -152,13 +152,13 @@ aside a{
   text-decoration: underline;
 }
 
-#items [class*="col-"]{
+.items [class*="col-"]{
   border: solid #bbbbbb 1px;
   padding: 10px 15px 20px 15px;
   margin: 15px;
   text-align: center;
 }
-#items [class*="col-"]::after{
+.items [class*="col-"]::after{
   content: '';
   display: block;
   width: 1px;
