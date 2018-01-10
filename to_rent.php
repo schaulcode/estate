@@ -19,17 +19,26 @@
 
         ?>
 
-      <div class="panel text-center">
-        <div class="col-xs-6">
+      <div class="panel panel-default text-center">
+      <div class="panel-body">
+          <div class="col-xs-6">
           <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
         </div>
         <div class="col-xs-6">
           <h2><a href="property.php?id=<?php echo $row['prop_id'] ?>&prop=rent"><?php echo $row['prop_title'];?></a></h2>
           <p>Location: <?php echo $row['prop_location'];?></p>
-          <p><?php echo substr($row['prop_content'],0,65);?></p>
+          <div class="col-xs-6">
+            <p><i class="fa fa-arrows-alt"></i></p>
+            <p><i class="fa fa-bed"></i></p>
+          </div>
+          <div class="col-xs-6">
+            <p><i class="fa fa-bath"></i></p>
+            <p><i class="fa fa-arrow-up"></i></p>
+          </div>
           <p class="price">Price: <?php echo  $row['prop_price_monthly']; ?>/m</p>
           <div><button class="btn btn-color" type="button" name="button">More details</button></div>
         </div>
+      </div>
       </div>
       <?php } ?>
     </div>

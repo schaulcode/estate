@@ -2,7 +2,7 @@
     <div class="wrapper">
         <?php include("include/navigation.php");?>
         <div class="main-content">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
                         <h1>Add Properties</h1>
@@ -54,6 +54,58 @@
                                 <div class="form-group">
                                   <input type="submit" class="btn btn-primary" name="add_property" value="Add Property">
                                 </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                  <label class="control-label" for="sqm">Sqaure meter:</label>
+                                  <input class="pull-right" type="number" id="sqm" name="sqm">
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="floor">Floor:</label>
+                                  <input class="pull-right" type="number" id="floor" name="floor">
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="bedrooms">Bedrooms:</label>
+                                  <input class="pull-right" type="number" id="bedrooms" name="bedrooms">
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="bathrooms">Bathrooms:</label>
+                                  <input class="pull-right" type="number" id="bathrooms" name="bathrooms">
+                                </div>
+                                <div class="panel panel-default">
+                                  <div class="panel-body">
+                                    <div class="checkbox">
+                                      <label>
+                                      <input type="checkbox" name="balony" value="true">Balcony
+                                    </label>
+                                  </div>
+                                    <div class="checkbox">
+                                      <label>
+                                      <input type="checkbox" name="elevator" value="true">Elevator
+                                    </label>
+                                    </div>
+                                    <div class="checkbox">
+                                      <label>
+                                      <input type="checkbox" name="garden-space" value="true">Garage space
+                                    </label>
+                                    </div>
+                                    <div class="checkbox">
+                                      <label>
+                                      <input type="checkbox" name="garden" value="true">Garden
+                                    </label>
+                                    </div>
+                                    <div class="checkbox">
+                                      <label>
+                                      <input type="checkbox" name="renovated" value="true">Renovated
+                                    </label>
+                                  </div>
+                                  <div class="checkbox">
+                                    <label>
+                                    <input type="checkbox" name="furnished" value="true">Furnished
+                                  </label>
+                                </div>
+                                </div>
+                              </div>
                             </div>
                         </form>
                     </div>

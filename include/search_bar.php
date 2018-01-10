@@ -1,4 +1,4 @@
-<h2>FIND YOUR PROPERTY</h2>
+<h3>PROPERTY SEARCH</h3>
 <form class="" action="index.php" method="post">
 
   <label class="col-md-12" for="price-from">Price per month</label>

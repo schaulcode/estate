@@ -24,18 +24,20 @@ body{
   #price-from, #price-to{
     width: 45.5%;
   }
-  .items .col-sm-6 {
+  .items-section .col-sm-6 {
     width: 46%;
-    height: 442px;
+
   }
 }
 @media (min-width:992px) {
   .container{
     width: 960px;
   }
-  .items .col-md-4 {
+  .items-section .col-md-4 {
     width: 30.2%;
-    height: 444px;
+  }
+  .image{
+    height: 142px;
   }
 }
 @media (max-width:530px) {
@@ -137,7 +139,7 @@ margin-bottom: 30px;
 aside{
   background-color: #dbdbdb;
 }
-aside h2{
+aside h3{
   background-color: #a23509;
   margin: 0px -15px 10px -15px;
   padding: 10px 30px 10px 30px;
@@ -152,30 +154,20 @@ aside a{
   text-decoration: underline;
 }
 
-.items [class*="col-"]{
+.items {
   border: solid #bbbbbb 1px;
   padding: 10px 15px 20px 15px;
   margin: 15px;
   text-align: center;
 }
-.items [class*="col-"]::after{
-  content: '';
-  display: block;
-  width: 1px;
-  height: 34px;
-}
+
 .btn-color{
   color: #fff;
   background-color: #a23509;
   bottom: 20px;
 
 }
-.button-position{
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  width: 100%;
-  text-align: center;
+
 
 }
 .sale{

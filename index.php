@@ -64,7 +64,7 @@
           </aside>
         </section>
         <!-- ITEMS SECTION -->
-        <section class="items row">
+        <section class="items-section row">
           <h3>Latest Properties to buy:</h3>
 
             <?php
@@ -77,11 +77,18 @@
 
               ?>
 
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-6 col-md-4 items">
               <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
               <h2><?php echo $row['prop_title'];?></h2>
-              <p>Location: <?php echo $row['prop_location'];?></p>
-              <p><?php echo substr($row['prop_content'],0,65);?></p>
+              <p><i class="fa fa-map-marker"></i> <?php echo $row['prop_location'];?></p>
+              <div class="col-xs-6">
+                <p class="text-left"><i class="fa fa-arrows-alt"></i></p>
+                <p class="text-left"><i class="fa fa-bed"></i></p>
+              </div>
+              <div class="col-xs-6">
+                <p class="text-left"><i class="fa fa-bath"></i></p>
+                <p class="text-left"><i class="fa fa-arrow-up"></i></p>
+              </div>
               <p class="price"><span>Price:</span><br>
               WAS: <span class="sale">£<?php echo $row['prop_price'];?></span><br>
               NOW: <span class="offer">£<?php echo $row['prop_sale_price'];?></span></p>
@@ -90,7 +97,7 @@
             <?php } ?>
 
         </section>
-        <section class="row items">
+        <section class="row items-section">
           <h3>Latest properies to rent:</h3>
           <?php
             $query = "SELECT * FROM properties_rent ORDER BY prop_id DESC LIMIT 3";
@@ -101,11 +108,20 @@
             while($row = mysqli_fetch_assoc($result)){
 
             ?>
-          <div class="col-sm-6 col-md-4">
-            <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
+          <div class="col-sm-6 col-md-4 items">
+            <div class="image">
+            <img src="/Activity/Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
+            </div>
             <h2><a href="property.php?id=<?php echo $row['prop_id'] ?>&prop=rent"><?php echo $row['prop_title'];?></a></h2>
-            <p>Location: <?php echo $row['prop_location'];?></p>
-            <p><?php echo substr($row['prop_content'],0,65);?></p>
+            <p><i class="fa fa-map-marker"></i> <?php echo $row['prop_location'];?></p>
+            <div class="col-xs-6">
+              <p class="text-left"><i class="fa fa-arrows-alt"></i></p>
+              <p class="text-left"><i class="fa fa-bed"></i></p>
+            </div>
+            <div class="col-xs-6">
+              <p class="text-left"><i class="fa fa-bath"></i></p>
+              <p class="text-left"><i class="fa fa-arrow-up"></i></p>
+            </div>
             <p class="price">Price: <?php echo  $row['prop_price_monthly']; ?>/m</p>
             <div><button class="btn btn-color" type="button" name="button">More details</button></div>
           </div>
