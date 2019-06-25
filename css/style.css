@@ -163,6 +163,7 @@ aside a{
   padding: 10px 15px 20px 15px;
   margin: 15px;
   text-align: center;
+  min-height: 465px;
 }
 
 .btn-color{
@@ -173,7 +174,7 @@ aside a{
 }
 
 
-}
+
 .sale{
   text-decoration: line-through;
 }
