@@ -4,6 +4,7 @@
         <div class="main-content">
           <div class="container-fluid">
             <div class="row">
+              <?php include 'include/delete_modal.php'; ?>
               <div class="col-xs-12">
                 <h1>Users</h1>
                 <table class="table table-bordered">
@@ -15,7 +16,6 @@
                       <th>Lastname</th>
                       <th>Role</th>
                       <th>Email</th>
-                      <th>Edit</th>
                       <th>Delete</th>
                     </tr>
                   </thead>
@@ -32,8 +32,7 @@
                       echo "<td>{$row['lastname']}</td>";
                       echo "<td>{$row['user_role']}</td>";
                       echo "<td>{$row['email']}</td>";
-                      echo "<td><a class='btn btn-primary' href=''>Edit</a></td>";
-                      echo "<td><a class='btn btn-danger' href=''>Delete</a></td>";
+                      echo "<td><a rel='{$row['id']}' class='btn btn-danger delete-link' href='javascript: void(0)'>Delete</a></td>";
                       echo "</tr>";
                       }
                      ?>
@@ -44,4 +43,17 @@
           </div>
         </div>
     </div>
+  <?php
+        if(isset($_POST['delete'])){
+        $user_delete = $_POST['delete_id'];
+        $query = "DELETE FROM users WHERE id = {$user_delete}";
+        $result = mysqli_query($connection, $query);
+        confirmQuery($result);
+        redirect("user.php");
+    }
+    ?>
 <?php include("include/admin-footer.php");?>
+
+<script>
+   delete_rows();
+</script>

@@ -201,4 +201,36 @@ function countChartWhere($from, $where){
 
 }
 
+
+function onlineUsers(){
+    global $connection;
+    if(!$connection){
+    session_start();
+    include("../../include/db.php");
+    }
+            $session = session_id();
+            $time = time();
+            $time_out = $time-05;
+
+
+            $result = mysqli_query($connection, "SELECT * FROM online_users WHERE session = '{$session}'");
+            confirmQuery($result);
+            $session_count = mysqli_num_rows($result);
+            if($session_count == NULL){
+                $query = "INSERT INTO online_users(session, time) VALUES('$session','$time')";
+                $result = mysqli_query($connection, $query);
+                confirmQuery($result);
+            }else{
+                $result = mysqli_query($connection, "UPDATE online_users SET time = $time WHERE session = '{$session}'");
+                confirmQuery($result);
+            }
+
+            $result = mysqli_query($connection, "SELECT * FROM online_users WHERE time >$time_out");
+            confirmQuery($result);
+            echo mysqli_num_rows($result);
+}
+if(isset($_GET['onlineusers'])){
+onlineUsers();
+}
+
  ?>

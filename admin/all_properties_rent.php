@@ -4,6 +4,7 @@
         <div class="main-content">
             <div class="container-fluid">
                 <div class="row">
+                  <?php include 'include/delete_modal.php'; ?>
                     <div class="col-xs-12">
                         <h1>Properties to buy</h1>
                         <div class="table-responsive">
@@ -28,7 +29,7 @@
                                     } else {
                                       $query = "SELECT * FROM properties_rent WHERE prop_advertiser = '{$_SESSION['firstname']}'";
                                     }
-                                        
+
                                         $result = mysqli_query($connection,$query);
                                         while($row = mysqli_fetch_assoc($result)){
                                             $prop_id = $row['prop_id'];
@@ -49,14 +50,14 @@
                                             echo "<td>$prop_content</td>";
                                             echo "<td>$prop_price_monthly</td>";
                                             echo "<td><a class='btn btn-primary' href='edit_properties_rent.php?edit=$prop_id'>Edit</a></td>";
-                                            echo "<td><a class='btn btn-danger' href='all_properties_rent.php?delete=$prop_id'>Delete</a></td>";
+                                            echo "<td><a rel='{$prop_id}' class='btn btn-danger delete-link' href='javascript: void(0)'>Delete</a></td>";
                                             echo "</tr>";
                                         }
-                                    if(isset($_GET['delete'])){
-                                        $delete_id = $_GET['delete'];
-                                        $query = "DELETE FROM properties_rent WHERE prop_id LIKE {$delete_id}";
+                                    if(isset($_POS['delete'])){
+                                        $delete_id = $_POST['delete_id'];
+                                        $query = "DELETE FROM properties_rent WHERE prop_id = {$delete_id}";
                                         $result = mysqli_query($connection,$query);
-                                        header("Location: all_properties_rent.php");
+                                        redirect("all_properties_rent.php");
                                     }
 
                                     ?>
@@ -69,3 +70,6 @@
         </div>
     </div>
 <?php include("include/admin-footer.php");?>
+<script>
+   delete_rows();
+</script>

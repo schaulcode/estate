@@ -37,7 +37,7 @@
 
                         ?>
                         <form action="" method="post" enctype="multipart/form-data">
-                            <div class="col-xs-6">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="title">Property Title</label>
                                     <input type="text" class="form-control" name="title">
@@ -65,10 +65,10 @@
                                         <label for="image">Property Image</label>
                                         <input type="file" name="image">
                                     </div>
-                                    <input type="submit" class="btn btn-primary" name="add_property" value="Add Property">
                                 </div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="clearfix hidden-md hidden-lg"></div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                   <label class="control-label" for="sqm">Sqaure meter:</label>
                                   <input class="pull-right" type="number" id="sqm" name="sqm" value="10" min="10" step="10">
@@ -115,6 +115,8 @@
                                 </div>
                               </div>
                             </div>
+                            <div class="clearfix"></div>
+                            <input type="submit" class="btn btn-primary" name="add_property" value="Add Property">
                         </form>
                     </div>
                 </div>

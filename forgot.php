@@ -7,7 +7,7 @@
     require("./vendor/autoload.php");
 
     if(!isset($_GET['forgot'])){
-        redirect("/CMS/index");
+        redirect("/Activity/index");
     }
 
     if(ifMethodSet('post') && isset($_POST['email'])){

@@ -7,7 +7,10 @@
                     <div class="col-xs-12">
                         <h1>Dashboard</h1>
                         <div class="col-md-6" id="donutchartProp" style="width: 500px; height: 500px;"></div>
-                        <div class="col-md-6" id="donutchartUsers" style="width: 500px; height: 500px;"></div>
+                        <?php if (isAdmin()): ?>
+                          <div class="col-md-6" id="donutchartUsers" style="width: 500px; height: 500px;"></div>
+                        <?php endif; ?>
+
                     </div>
                 </div>
             </div>
@@ -15,8 +18,13 @@
     </div>
 <?php include("include/admin-footer.php");?>
 <?php
+if(isAdmin()){
 $to_buy_count = countChart("properties_buy");
 $to_rent_count = countChart("properties_rent");
+}else{
+  $to_buy_count = countChartWhere("properties_buy", "prop_advertiser = '{$_SESSION['firstname']}'");
+  $to_rent_count = countChartWhere("properties_rent","prop_advertiser = '{$_SESSION['firstname']}'");
+}
 $advertisers_count = countChartWhere("users", "user_role = 'Advertiser'");
 $users_count = countChartWhere("users", "user_role = 'User'");
 

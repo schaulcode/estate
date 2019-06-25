@@ -21,10 +21,10 @@
 
       <div class="panel panel-default text-center">
       <div class="panel-body">
-          <div class="col-xs-6">
+          <div class="col-md-6">
           <img src="Image/<?php echo $row['prop_image'];?>" alt="" class="img-responsive">
         </div>
-        <div class="col-xs-6">
+        <div class="col-md-6">
           <h2><a href="property.php?id=<?php echo $row['prop_id'] ?>&prop=rent"><?php echo $row['prop_title'];?></a></h2>
           <p><i class="fa fa-map-marker"></i> <?php echo $row['prop_location'];?></p>
           <div class="col-xs-6">

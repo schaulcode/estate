@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width">
+    <!-- Text editor from Tinymce -->
+    <script type="text/javascript" src="../js/tinymce/tinymce.min.js"></script>
     <title>Admin</title>
 </head>
 <body>
