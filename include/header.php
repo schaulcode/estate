@@ -1,3 +1,7 @@
+<?php ob_start(); ?>
+<?php include 'db.php'; ?>
+<?php include 'admin/include/functions.php'; ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,7 +22,32 @@
             <a href="index"><img  src="image/logo.png" alt="logo"></a>
           </div>
           <div class=" col-md-offset-6   col-md-3">
-            <div class="">
+            <?php if(isLoggedIn()) :
+              if(isAdmin() || isAdvertiser()) : ?>
+              <div class="dropdown pull-right">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Hi,  <?php echo $_SESSION['firstname'] ?>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="/Activity/admin">Admin</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="/Activity/admin/include/logout.php">Logout</a></li>
+                </ul>
+              </div>
+            <?php else: ?>
+              <div class="dropdown pull-right">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Hi  <?php echo $_SESSION['firstname'] ?>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="/Activity/admin">Admin</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="/Activity/admin/include/logout.php">Logout</a></li>
+                </ul>
+            <?php endif; ?>
+            <?php else: ?>
                <h4>Login or <a href="registration">Register</a></h4>
                 <form action="login.php" method="post">
                     <div class="form-group">
@@ -34,7 +63,7 @@
                         <p><a href="forgot?forgot=<?php echo uniqid(true); ?>">Forgot Password?</a></p>
                     </div>
                 </form>
-            </div>
+              <?php endif; ?>
             </div>
           </div>
         </div>

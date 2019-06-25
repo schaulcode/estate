@@ -20,9 +20,9 @@
                 mysqli_stmt_bind_param($stmt, "i", $id);
                 mysqli_stmt_execute($stmt);
                 if ($_GET['prop'] == "buy") {
-                  mysqli_stmt_bind_result($stmt, $id, $advertiser, $title, $location, $image, $content, $price, $sales_price);
+                  mysqli_stmt_bind_result($stmt, $id, $advertiser, $title, $location, $image, $content, $price, $sales_price,$sqm, $bedrooms, $bathrooms, $floor, $balcony, $elevator, $garage, $garden, $renovated);
                 } else {
-                  mysqli_stmt_bind_result($stmt, $id, $advertiser, $title, $location, $image, $content, $price);
+                  mysqli_stmt_bind_result($stmt, $id, $advertiser, $title, $location, $image, $content, $price, $sqm, $bedrooms, $bathrooms, $floor, $balcony, $elevator, $garage, $garden, $renovated, $furnished);
                 }
 
                 mysqli_stmt_fetch($stmt);
@@ -37,7 +37,7 @@
               </div>
               <div class="panel-body">
                 <h4>Advertised by: <?php echo $advertiser ?></h4>
-                <p>Location: <?php echo $location;?></p>
+                <p><i class="fa fa-map-marker"></i> <?php echo $location;?></p>
                 <p><?php echo $content;?></p>
                 <?php if(isset($sales_price)): ?>
                 <p class="price"><span>Price:</span><br>
@@ -51,29 +51,33 @@
                     <div class="col-xs-6">
                       <dl class="dl-horizontal">
                         <dt>Property Id:</dt>
-                        <dd>48</dd>
+                        <dd><?php echo $id ?></dd>
                         <dt>Sqaure meters:</dt>
-                        <dd>85</dd>
+                        <dd><?php echo $sqm ?></dd>
                         <dt>Floor:</dt>
-                        <dd>2</dd>
+                        <dd><?php echo $floor ?></dd>
                         <dt>Bedrooms:</dt>
-                        <dd></dd>
+                        <dd><?php echo $bedrooms ?></dd>
                         <dt>Bathroom:</dt>
-                        <dd></dd>
+                        <dd><?php echo $bathrooms ?></dd>
                       </dl>
                     </div>
                     <div class="col-xs-6">
                       <dl class="dl-horizontal">
                         <dt>Balcony:</dt>
-                        <dd>48</dd>
+                        <dd><?php echo ($balcony == 1) ? "Yes" : "No" ; ?></dd>
                         <dt>Elevator:</dt>
-                        <dd>85</dd>
+                        <dd><?php echo ($elevator == 1) ? "Yes" : "No" ; ?></dd>
                         <dt>Garage space:</dt>
-                        <dd>2</dd>
+                        <dd><?php echo ($garage == 1) ? "Yes" : "No" ; ?></dd>
                         <dt>Garden:</dt>
-                        <dd></dd>
+                        <dd><?php echo ($garden == 1) ? "Yes" : "No" ; ?></dd>
                         <dt>Renovated</dt>
-                        <dd></dd>
+                        <dd><?php echo ($renovated == 1) ? "Yes" : "No" ; ?></dd>
+                        <?php if (isset($furnished)): ?>
+                        <dt>Furnished</dt>
+                        <dd><?php echo ($furnished == 1) ? "Yes" : "No" ; ?></dd>
+                        <?php endif; ?>
                       </dl>
                     </div>
                   </div>

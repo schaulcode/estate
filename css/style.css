@@ -154,6 +154,10 @@ aside a{
   text-decoration: underline;
 }
 
+.advanced{
+  display: none;
+}
+
 .items {
   border: solid #bbbbbb 1px;
   padding: 10px 15px 20px 15px;

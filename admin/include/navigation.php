@@ -11,7 +11,7 @@
             <ul class="nav navbar-right top-nav">
                 <li><a href="../index.php">Website</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php // echo $_SESSION['firstname']?> Scholi <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $_SESSION['firstname']?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -51,8 +51,9 @@
                            </li>
                        </ul>
                    </li>
-                   <li><a href=""><i></i>Advertisers</a></li>
+                   <?php if(isAdmin()) : ?>
                    <li><a href="user.php"><i></i>Users</a></li>
+                 <?php endif; ?>
                 </ul>
             </div>
         </nav>

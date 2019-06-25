@@ -14,12 +14,25 @@
                                 $prop_price_monthly = $_POST['price'];
                                 $prop_image = $_FILES['image']['name'];
                                 $prop_image_temp = $_FILES['image']['tmp_name'];
+                                $prop_sqm = $_POST['sqm'];
+                                $prop_floor = $_POST['floor'];
+                                $prop_bedrooms = $_POST['bedrooms'];
+                                $prop_bathrooms = $_POST['bathrooms'];
+                                $prop_balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0 ;
+                                $prop_elevator = (isset($_POST['elevator'])) ? $_POST['elevator'] : 0;
+                                $prop_garage = (isset($_POST['garage'])) ? $_POST['garage'] : 0;
+                                $prop_garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
+                                $prop_renovated = (isset($_POST['renovated'])) ? $_POST['renovated'] : 0;
+                                $prop_furnished = (isset($_POST['furnished'])) ? $_POST['furnished'] : 0;
+                                $prop_advertiser = $_SESSION['firstname'];
+
                                 move_uploaded_file($prop_image_temp,"../image/$prop_image");
-                                $query = "INSERT INTO properties_rent (prop_title, prop_location, prop_content, prop_image, prop_price_monthly) VALUES ('{$prop_title}', '{$prop_location}', '{$prop_content}', '{$prop_image}', {$prop_price_monthly})";
-                                $result = mysqli_query($connection, $query);
-                                if(!$result){
-                                    die("Failed".mysqli_error($connection));
-                                }
+
+                                $stmt = mysqli_prepare($connection,"INSERT INTO properties_rent (prop_advertiser, prop_title, prop_location, prop_content, prop_image, prop_price_monthly, prop_sqm, prop_floor, prop_bedrooms, prop_bathrooms, prop_balcony, prop_elevator, prop_garage, prop_garden, prop_renovated, prop_furnished ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                mysqli_stmt_bind_param($stmt, "ssssiiiiiiiiiii", $prop_advertiser, $prop_title,$prop_location, $prop_content, $prop_image, $prop_price, $prop_sqm, $prop_floor, $prop_bedrooms, $prop_bathrooms, $prop_balcony, $prop_elevator, $prop_garage, $prop_garden, $prop_renovated, $prop_furnished);
+                                mysqli_stmt_execute($stmt);
+
+                                 confirmQuery($stmt);
                             }
 
 

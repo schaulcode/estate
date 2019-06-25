@@ -23,7 +23,12 @@
                                 </thead>
                                 <tbody>
                                     <?php
+                                    if (isAdmin()) {
                                         $query = "SELECT * FROM properties_rent";
+                                    } else {
+                                      $query = "SELECT * FROM properties_rent WHERE prop_advertiser = '{$_SESSION['firstname']}'";
+                                    }
+                                        
                                         $result = mysqli_query($connection,$query);
                                         while($row = mysqli_fetch_assoc($result)){
                                             $prop_id = $row['prop_id'];

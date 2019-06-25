@@ -14,7 +14,7 @@
                 <div class="form-wrap">
                 <h1>Contact</h1>
                    <?php
-                  /*  use PHPMailer\PHPMailer\PHPMailer;
+                   use PHPMailer\PHPMailer\PHPMailer;
                     use PHPMailer\PHPMailer\Exception;
                     require("./vendor/autoload.php");
 
@@ -44,7 +44,7 @@
                         if($mail->send()){
                             echo "<h1>Email was sent succesfully</h1>";
                         }
-                    } */
+                    } 
                     ?>
                     <form role="form" action="contact.php" method="post" id="login-form" autocomplete="off">
                          <div class="form-group">

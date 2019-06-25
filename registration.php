@@ -1,5 +1,3 @@
-<?php include("include/db.php"); ?>
-
     <!--  HEADER  -->
 <?php include("include/header.php"); ?>
 
@@ -13,21 +11,23 @@
                 <div class="form-wrap">
                 <h1>Register</h1>
                    <?php
-                      /*  use PHPMailer\PHPMailer\PHPMailer;
+                        use PHPMailer\PHPMailer\PHPMailer;
                         use PHPMailer\PHPMailer\Exception;
                         require("./vendor/autoload.php");
 
                         if(isset($_POST['submit'])){
-                            $firstname = escape($_POST['firstname']);
-                            $lastname =  escape($_POST['lastname']);
-                            $username = escape($_POST['username']);
-                            $email    = escape($_POST['email']);
-                            $password = escape($_POST['password']);
-                            $user_role= 'Subscriber';
+                            $firstname = $_POST['firstname'];
+                            $lastname =  $_POST['lastname'];
+                            $username =  $_POST['username'];
+                            $email    =  $_POST['email'];
+                            $password =  $_POST['password'];
+                            $confirm_password = $_POST['confirm_password'];
+                            $user_role=  $_POST['user_role'];
+                            $company_name = (isset($_POST['company_name'])) ? $_POST['company_name'] : "";
                             $token    = bin2hex(openssl_random_pseudo_bytes(50));
                             $verify   = "No";
 
-                            if(empty($error = validateRegister($firstname, $lastname, $username, $email, $password, $user_role, $token, $verify))){
+                            if(empty($error = validateRegister($firstname, $lastname, $username, $email, $password, $confirm_password, $user_role, $company_name, $token, $verify))){
                                  $mail = new PHPMailer;
 
                             $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -42,19 +42,21 @@
                             $mail->addAddress($email);                            // Add a recipient
                             $mail->isHTML(true);                                  // Set email format to HTML
                             $mail->Subject = "Verify you email adress";
-                            $mail->Body    = "<p> <a href='http://localhost/CMS/verify?email=$email&token=$token'>click here to verify password</a></p>";
+                            $mail->Body    = "<p> <a href='http://localhost/Activity/verify?email=$email&token=$token'>click here to verify password</a></p>";
                             $mail->CharSet = 'UTF-8';
 
                                 if($mail->send()){
                                     redirect("verify");
                                 }
                                             }
-                        } // End of ISSET */
-
+                        } // End of ISSET
 
 
                     ?>
-                    <form role="form" action="registration.php" method="post" id="login-form" autocomplete="on">
+                    <p class="text-danger"><?php echo isset($error['username']) ? $error['username'] : ""; ?></p>
+                    <p class="text-danger"><?php echo isset($error['email']) ? $error['email'] : ""; ?></p>
+                    <p class="text-danger"><?php echo isset($error['password']) ? $error['password'] : ""; ?></p>
+                    <form role="form" action="" method="post" id="login-form" autocomplete="on">
                       <div class="form-group">
                         <label for="user_role">Select an option:</label>
                         <select name="user_role" id="user_role">
@@ -82,22 +84,31 @@
    <script type="text/javascript">
    function get_form(){
      if($("#user_role").val() == "Advertiser"){
-       $.get("advertiser_reg_form.html", function(respond){
+       $.get({
+         url: "advertiser_reg_form.php",
+         async: true,
+         success:  function(respond){
          $("#form-content").html(respond);
-       })
-     }
+       }
+     })
+   }
      if($("#user_role").val() == "User"){
-       $.get("user_reg_form.html", function(respond){
+       $.get({
+         url: "user_reg_form.php",
+         async: true,
+         success:  function(respond){
          $("#form-content").html(respond);
-       })
+       }
+     })
      }
    }
-   $("document").ready(function(){
+
+
       get_form();
       $("#user_role").on("change", function(){
         get_form();
       })
-     })
+
 
 
    </script>

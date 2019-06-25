@@ -26,17 +26,17 @@
         </div>
         <div class="col-xs-6">
           <h2><a href="property.php?id=<?php echo $row['prop_id'] ?>&prop=rent"><?php echo $row['prop_title'];?></a></h2>
-          <p>Location: <?php echo $row['prop_location'];?></p>
+          <p><i class="fa fa-map-marker"></i> <?php echo $row['prop_location'];?></p>
           <div class="col-xs-6">
-            <p><i class="fa fa-arrows-alt"></i></p>
-            <p><i class="fa fa-bed"></i></p>
+            <p class="text-left"><i class="fa fa-arrows-alt"></i> <?php echo $row['prop_sqm'] ?> sqm</p>
+            <p class="text-left"><i class="fa fa-bed"></i> <?php echo $row['prop_bedrooms'] ?></p>
           </div>
           <div class="col-xs-6">
-            <p><i class="fa fa-bath"></i></p>
-            <p><i class="fa fa-arrow-up"></i></p>
+            <p class="text-left"><i class="fa fa-bath"></i> <?php echo $row['prop_bathrooms'] ?></p>
+            <p class="text-left"><i class="fa fa-arrow-up"></i> <?php echo $row['prop_floor'] ?></p>
           </div>
           <p class="price">Price: <?php echo  $row['prop_price_monthly']; ?>/m</p>
-          <div><button class="btn btn-color" type="button" name="button">More details</button></div>
+          <a href="property?id=<?php echo $row['prop_id'] ?>&prop=rent" class="btn btn-color" type="button" name="button">More details</a>
         </div>
       </div>
       </div>

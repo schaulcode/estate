@@ -9,12 +9,12 @@
  <div class="form-group">
     <label for="email" >Email</label>
     <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com" value="">
-    <p></p>
+    <p><?php echo isset($error['email']) ? $error['email'] : '' ?></p>
 </div>
  <div class="form-group">
      <label for="username">Username</label>
      <input type="text" name="username" id="username" class="form-control" value="">
-     <p></p>
+     <p><?php echo isset($error['username']) ? $error['username'] : '' ?></p>
  </div>
   <div class="form-group">
      <label for="password">Password</label>
@@ -23,6 +23,6 @@
  </div>
  <div class="form-group">
     <label for="password">Confirm Password</label>
-    <input type="password" name="password" id="confirm_key" class="form-control">
+    <input type="password" name="confirm_password" id="confirm_key" class="form-control">
     <p><?php echo isset ($error['password']) ? $error['password'] : ''  ?></p>
 </div>

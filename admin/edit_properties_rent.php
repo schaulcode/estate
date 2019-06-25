@@ -9,7 +9,7 @@
                         <?php
                             if(isset($_GET['edit'])){
                                 $prop_id = $_GET['edit'];
-                                $query = "SELECT * FROM properties_buy WHERE prop_id = {$prop_id} ";
+                                $query = "SELECT * FROM properties_rent WHERE prop_id = {$prop_id} ";
                                 $result = mysqli_query($connection, $query);
                                 $row = mysqli_fetch_assoc($result);
                             }
@@ -19,16 +19,30 @@
                                 $prop_location = $_POST['location'];
                                 $prop_content = $_POST['content'];
                                 $prop_price = $_POST['price'];
-                                $prop_sale_price = $_POST['sale_price'];
                                 $prop_image = $_FILES['image']['name'];
                                 $prop_image_temp = $_FILES['image']['tmp_name'];
-                                move_uploaded_file($prop_image_temp,"../image/$prop_image");
-                                $query = "UPDATE properties_buy SET prop_title = '{$prop_title}', prop_location = '{$prop_location}', prop_content = '{$prop_content}', prop_image = '{$prop_image}', prop_price = {$prop_price}, prop_sale_price = {$prop_sale_price} WHERE prop_id = {$prop_id}";
-                                $result = mysqli_query($connection, $query);
-                                if(!$result){
-                                    die("Failed".mysqli_error($connection));
+                                $prop_sqm = $_POST['sqm'];
+                                $prop_floor = $_POST['floor'];
+                                $prop_bedrooms = $_POST['bedrooms'];
+                                $prop_bathrooms = $_POST['bathrooms'];
+                                $prop_balcony = (isset($_POST['balcony'])) ? $_POST['balcony'] : 0 ;
+                                $prop_elevator = (isset($_POST['elevator'])) ? $_POST['elevator'] : 0;
+                                $prop_garage = (isset($_POST['garage'])) ? $_POST['garage'] : 0;
+                                $prop_garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
+                                $prop_renovated = (isset($_POST['renovated'])) ? $_POST['renovated'] : 0;
+                                $prop_furnished = (isset($_POST['furnished'])) ? $_POST['furnished'] : 0;
+                                if (!empty($prop_image)) {
+                                  move_uploaded_file($prop_image_temp,"../image/$prop_image");
+                                }else {
+                                  $prop_image = $row['prop_image'];
                                 }
-                                header("Location: all_properties_buy.php");
+
+
+                                $stmt = mysqli_prepare($connection,"UPDATE properties_rent SET prop_title =?, prop_location =?, prop_content =?, prop_image =?, prop_price_monthly =?, prop_sqm =?, prop_floor =?, prop_bedrooms =?, prop_bathrooms =?,prop_balcony =?, prop_elevator =?, prop_garage =? ,prop_garden =?, prop_renovated =?, prop_furnished =? WHERE prop_id = ?");
+                                mysqli_stmt_bind_param($stmt, "ssssiiiiiiiiiiii", $prop_title,$prop_location, $prop_content, $prop_image, $prop_price, $prop_sqm, $prop_floor, $prop_bedrooms, $prop_bathrooms, $prop_balcony, $prop_elevator, $prop_garage, $prop_garden, $prop_renovated,$prop_furnished, $prop_id);
+                                mysqli_stmt_execute($stmt);
+
+                                // checkQuery($stmt);
                             }
 
 
@@ -45,17 +59,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Property Content</label>
-                                    <textarea class="form-control" name="content" cols="30" rows="10"><?php echo $row['prop_content']?>"</textarea>
+                                    <textarea class="form-control" name="content" cols="30" rows="10"><?php echo $row['prop_content']?></textarea>
                                 </div>
                                 <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="price">Property Price</label>
-                                        <input type="number" class="form-control" name="price" value="<?php echo $row['prop_price']?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="sale_price">Property Sale Price</label>
-                                        <input type="number" class="form-control" name="sale_price" value="<?php echo $row['prop_sale_price']?>">
-                                    </div>
+                                  <div class="form-group">
+                                      <label for="price">Property Price per Month</label>
+                                      <input type="number" class="form-control" name="price" value="<?php echo $row['prop_price_monthly'] ?>">
+                                  </div>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-group">
@@ -69,50 +79,50 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                   <label class="control-label" for="sqm">Sqaure meter:</label>
-                                  <input class="pull-right" type="number" id="sqm" name="sqm">
+                                  <input class="pull-right" type="number" id="sqm" name="sqm" value="<?php echo $row['prop_sqm'] ?>">
                                 </div>
                                 <div class="form-group">
                                   <label class="control-label" for="floor">Floor:</label>
-                                  <input class="pull-right" type="number" id="floor" name="floor">
+                                  <input class="pull-right" type="number" id="floor" name="floor" value="<?php echo $row['prop_floor'] ?>">
                                 </div>
                                 <div class="form-group">
                                   <label class="control-label" for="bedrooms">Bedrooms:</label>
-                                  <input class="pull-right" type="number" id="bedrooms" name="bedrooms">
+                                  <input class="pull-right" type="number" id="bedrooms" name="bedrooms" value="<?php echo $row['prop_bedrooms'] ?>">
                                 </div>
                                 <div class="form-group">
                                   <label class="control-label" for="bathrooms">Bathrooms:</label>
-                                  <input class="pull-right" type="number" id="bathrooms" name="bathrooms">
+                                  <input class="pull-right" type="number" id="bathrooms" name="bathrooms" value="<?php echo $row['prop_bathrooms'] ?>">
                                 </div>
                                 <div class="panel panel-default">
                                   <div class="panel-body">
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="balony" value="true">Balcony
+                                      <input type="checkbox" name="balony" value="1" <?php if($row['prop_balcony']) echo "checked" ?>>Balcony
                                     </label>
                                   </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="elevator" value="true">Elevator
+                                      <input type="checkbox" name="elevator" value="1" <?php if($row['prop_elevator']) echo "checked" ?>>Elevator
                                     </label>
                                     </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="garden-space" value="true">Garage space
+                                      <input type="checkbox" name="garden-space" value="1" <?php if($row['prop_garage']) echo "checked" ?>>Garage space
                                     </label>
                                     </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="garden" value="true">Garden
+                                      <input type="checkbox" name="garden" value="1" <?php if($row['prop_garden']) echo "checked" ?>>Garden
                                     </label>
                                     </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="renovated" value="true">Renovated
+                                      <input type="checkbox" name="renovated" value="1" <?php if($row['prop_renovated']) echo "checked" ?>>Renovated
                                     </label>
                                   </div>
                                   <div class="checkbox">
                                     <label>
-                                    <input type="checkbox" name="furnished" value="true">Furnished
+                                    <input type="checkbox" name="furnished" value="1" <?php if($row['prop_furnished']) echo "checked" ?>>Furnished
                                   </label>
                                 </div>
                                 </div>

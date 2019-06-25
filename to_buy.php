@@ -26,12 +26,19 @@
           </div>
         <div class="col-xs-6">
           <h2><a href="property.php?id=<?php echo $row['prop_id']?>&prop=buy"><?php echo $row['prop_title'];?></a></h2>
-          <p>Location: <?php echo $row['prop_location'];?></p>
-          <p><?php echo substr($row['prop_content'],0,65);?></p>
+          <p><i class="fa fa-map-marker"></i> <?php echo $row['prop_location'];?></p>
+          <div class="col-xs-6">
+            <p class="text-left"><i class="fa fa-arrows-alt"></i> <?php echo $row['prop_sqm'] ?> sqm</p>
+            <p class="text-left"><i class="fa fa-bed"></i> <?php echo $row['prop_bedrooms'] ?></p>
+          </div>
+          <div class="col-xs-6">
+            <p class="text-left"><i class="fa fa-bath"></i> <?php echo $row['prop_bathrooms'] ?></p>
+            <p class="text-left"><i class="fa fa-arrow-up"></i> <?php echo $row['prop_floor'] ?></p>
+          </div>
           <p class="price"><span>Price:</span><br>
           WAS: <span class="sale">£<?php echo $row['prop_price'];?></span><br>
           NOW: <span class="offer">£<?php echo $row['prop_sale_price'];?></span></p>
-          <div><button class="btn btn-color" type="button" name="button">More details</button></div>
+          <a href="property?id=<?php echo $row['prop_id'] ?>&prop=buy" class="btn btn-color" type="button" name="button">More details</a>
         </div>
         </div>
       </div>

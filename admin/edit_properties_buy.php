@@ -31,7 +31,12 @@
                                 $prop_garage = (isset($_POST['garage'])) ? $_POST['garage'] : 0;
                                 $prop_garden = (isset($_POST['garden'])) ? $_POST['garden'] : 0;
                                 $prop_renovated = (isset($_POST['renovated'])) ? $_POST['renovated'] : 0;
-                                move_uploaded_file($prop_image_temp,"../image/$prop_image");
+                                if (!empty($prop_image)) {
+                                  move_uploaded_file($prop_image_temp,"../image/$prop_image");
+                                }else {
+                                  $prop_image = $row['prop_image'];
+                                }
+
 
                                 $stmt = mysqli_prepare($connection,"UPDATE properties_buy SET prop_title =?, prop_location =?, prop_content =?, prop_image =?, prop_price =?, prop_sale_price =?, prop_sqm =?, prop_floor =?, prop_bedrooms =?, prop_bathrooms =?,prop_balcony =?, prop_elevator =?, prop_garage =? ,prop_garden =?, prop_renovated =? WHERE prop_id = ?");
                                 mysqli_stmt_bind_param($stmt, "ssssiiiiiisssssi", $prop_title,$prop_location, $prop_content, $prop_image, $prop_price, $prop_sale_price, $prop_sqm, $prop_floor, $prop_bedrooms, $prop_bathrooms, $prop_balcony, $prop_elevator, $prop_garage, $prop_garden, $prop_renovated, $prop_id);
@@ -54,7 +59,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content">Property Content</label>
-                                    <textarea class="form-control" name="content" cols="30" rows="10"><?php echo $row['prop_content']?>"</textarea>
+                                    <textarea class="form-control" name="content" cols="30" rows="10"><?php echo $row['prop_content']?></textarea>
                                 </div>
                                 <div class="col-xs-6">
                                     <div class="form-group">
@@ -78,45 +83,45 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                   <label class="control-label" for="sqm">Sqaure meter:</label>
-                                  <input class="pull-right" type="number" id="sqm" name="sqm">
+                                  <input class="pull-right" type="number" id="sqm" name="sqm" value="<?php echo $row['prop_sqm'] ?>">
                                 </div>
                                 <div class="form-group">
                                   <label class="control-label" for="floor">Floor:</label>
-                                  <input class="pull-right" type="number" id="floor" name="floor">
+                                  <input class="pull-right" type="number" id="floor" name="floor" value="<?php echo $row['prop_floor'] ?>">
                                 </div>
                                 <div class="form-group">
                                   <label class="control-label" for="bedrooms">Bedrooms:</label>
-                                  <input class="pull-right" type="number" id="bedrooms" name="bedrooms">
+                                  <input class="pull-right" type="number" id="bedrooms" name="bedrooms" value="<?php echo $row['prop_bedrooms'] ?>">
                                 </div>
                                 <div class="form-group">
                                   <label class="control-label" for="bathrooms">Bathrooms:</label>
-                                  <input class="pull-right" type="number" id="bathrooms" name="bathrooms">
+                                  <input class="pull-right" type="number" id="bathrooms" name="bathrooms" value="<?php echo $row['prop_bathrooms'] ?>">
                                 </div>
                                 <div class="panel panel-default">
                                   <div class="panel-body">
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="balcony" value="1">Balcony
+                                      <input type="checkbox" name="balcony" value="1" <?php if($row['prop_balcony']) echo "checked" ?>>Balcony
                                     </label>
                                   </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="elevator" value="1">Elevator
+                                      <input type="checkbox" name="elevator" value="1" <?php if($row['prop_elevator']) echo "checked" ?>>Elevator
                                     </label>
                                     </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="garage" value="1">Garage space
+                                      <input type="checkbox" name="garage" value="1" <?php if($row['prop_garage']) echo "checked" ?>>Garage space
                                     </label>
                                     </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="garden" value="1">Garden
+                                      <input type="checkbox" name="garden" value="1" <?php if($row['prop_garden']) echo "checked" ?>>Garden
                                     </label>
                                     </div>
                                     <div class="checkbox">
                                       <label>
-                                      <input type="checkbox" name="renovated" value="1">Renovated
+                                      <input type="checkbox" name="renovated" value="1" <?php if($row['prop_renovated']) echo "checked" ?>>Renovated
                                     </label>
                                   </div>
                                 </div>
